@@ -1,26 +1,23 @@
 
 <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif"/>
-
+## Обо мне
 - 🌱 Привет, меня зовут **Леонид**. **Я инженер сопровождения с упором в DevOps-стек**
 
 Эксплуатирую критичные сервисы с учётом SLA и SLO, отвечаю за стабильность тестовых и боевых стендов. 5+ лет опыта в мониторинге, контейнеризации и автоматизации. Пишу сервисы и скрипты на Python, интегрирую системы через API и CI/CD. Применяю SRE-подход и анализирую инциденты постфактум.
-
 - 📝 Мой TG-канал: [**intData: Future Has Come**](https://t.me/intdata).
-
 - 📫 Написать мне можно в [**TG**](https://t.me/leotechru).
-
-- 📄 Мой карьерный трек: <a href="https://www.linkedin.com/in/leotechru/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LeoTechRu"/></a> <a href="https://career.habr.com/leotechru" target="blank"><img align="center" src="https://raw.githubusercontent.com/daniilshat/daniilshat/d71898e2a08f31fd3f9512a9d30d3cb1d025a649/icons/habr.svg" alt="LeoTechRu" height="60" width="60" /></a>.
-
 - 🌍 Мой родной язык русский, I study English (A2)
-
+- 📄 Мой карьерный трек: <a href="https://www.linkedin.com/in/leotechru/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LeoTechRu"/></a> <a href="https://career.habr.com/leotechru" target="blank"><img align="center" src="https://raw.githubusercontent.com/daniilshat/daniilshat/d71898e2a08f31fd3f9512a9d30d3cb1d025a649/icons/habr.svg" alt="LeoTechRu" height="60" width="60" /></a>.
 - Прочее: 
 <a href="https://codepen.io/leotechru" target="blank"><img align="center" src="https://raw.githubusercontent.com/daniilshat/daniilshat/2d7eafe5250314b3d422c86b35de062e0f1f5178/icons/codepen.svg" alt="LeoTechRu" height="40" width="40" /></a>
 <a href="https://habr.com/ru/users/leotechru" target="blank"><img align="center" src="https://raw.githubusercontent.com/daniilshat/daniilshat/d71898e2a08f31fd3f9512a9d30d3cb1d025a649/icons/habr.svg" alt="LeoTechRu" height="60" width="60" /></a>
 
+## С чем я работал:
+- БД: <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png" alt="css3" width="50" height="50"/> </a> <a href="https://www.oracle.com/database/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/oracle.png" alt="css3" width="50" height="50"/> </a> <a href="https://www.firebirdsql.org" target="_blank" rel="noreferrer"> <img src="https://www.firebirdsql.org/file/about/firebird-logo-42.png" alt="css3" width="50" height="50"/> </a>
+- <a href="https://ru.wikipedia.org/wiki/Bash" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/bash.png" alt="css3" width="40" height="40"/> </a> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png" alt="css3" width="50" height="50"/> </a>
+
 ### Технологии и инструменты которые я изучаю:
-<p align="left"> 
-<a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/daniilshat/daniilshat/2d7eafe5250314b3d422c86b35de062e0f1f5178/icons/C.svg" alt="c" width="40" height="40"/> </a> 
-<a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/daniilshat/daniilshat/2d7eafe5250314b3d422c86b35de062e0f1f5178/icons/C%2B%2B.svg" alt="cplusplus" width="40" height="40"/> </a> 
+<p align="left">  
 <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/daniilshat/daniilshat/2d7eafe5250314b3d422c86b35de062e0f1f5178/icons/CSS3.svg" alt="css3" width="40" height="40"/> </a> 
 <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/daniilshat/daniilshat/2d7eafe5250314b3d422c86b35de062e0f1f5178/icons/HTML5.svg" alt="html5" width="40" height="40"/> </a> 
 <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/daniilshat/daniilshat/2d7eafe5250314b3d422c86b35de062e0f1f5178/icons/python.svg" alt="python" width="40" height="40"/> </a> 
