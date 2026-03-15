@@ -22,19 +22,20 @@ I build reliable technical contours: infrastructure, automation, monitoring, age
 **AI contour:** Codex, Gemini, agent workflows, knowledge systems, controlled AI usage  
 **Experience context:** support engineering, infrastructure operations, process ownership, technical coordination
 
-## Публичные кейсы
+## Публичные материалы
 
-### [DevOps](https://github.com/LeoTechPro/DevOps)
+Вся инженерная база знаний и практические наработки теперь структурированы в разделе `content/`:
 
-Мой основной публичный инженерный репозиторий: развитие в DevOps/SRE-стеке, лаборатории, материалы и практические контуры.
+-   [**Docs**](./content/docs/) — статьи, шпаргалки и техническая документация (DevOps, инструменты).
+-   [**Lab**](./content/lab/) — практические лаборатории, примеры кода и интеграции.
+-   [**Edu**](./content/edu/) — учебные курсы и выполненные задания (Otus, Testing).
+-   [**Archive**](./content/archive/) — архивные проекты и старые скрипты.
+
+---
 
 ### [intTools](https://github.com/LeoTechPro/intTools)
 
 Инфраструктурный репозиторий инструментов и автоматизации: shared tooling, gates, codex- и probe-утилиты, внутренние ops-пайплайны и поддержка команды.
-
-### [LeoTechPro](https://github.com/LeoTechPro/LeoTechPro)
-
-Публичный профильный хаб и личная витрина: сайт, профиль, точка входа в мои публичные материалы и кейсы.
 
 ## Сейчас мне особенно интересны
 
