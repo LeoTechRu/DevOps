@@ -1,0 +1,193 @@
+services:
+  erpnext-mariadb:
+    image: mariadb:10.6
+    container_name: erpnext-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ERPNEXT_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${ERPNEXT_DB_NAME}
+      MYSQL_USER: ${ERPNEXT_DB_USER}
+      MYSQL_PASSWORD: ${ERPNEXT_DB_PASSWORD}
+    volumes:
+      - erpnext-mariadb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  erpnext-redis:
+    image: redis:7-alpine
+    container_name: erpnext-redis
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${ERPNEXT_REDIS_PASSWORD}"]
+    environment:
+      REDIS_PASSWORD: ${ERPNEXT_REDIS_PASSWORD}
+    volumes:
+      - erpnext-redis:/data
+
+  erpnext:
+    image: frappe/erpnext:latest
+    container_name: erpnext
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MARIADB_HOST: erpnext-mariadb
+      MARIADB_PORT_NUMBER: "3306"
+      MARIADB_ROOT_USER: root
+      MARIADB_ROOT_PASSWORD: ${ERPNEXT_DB_ROOT_PASSWORD}
+      ERP_NEXT_DATABASE_NAME: ${ERPNEXT_DB_NAME}
+      ERP_NEXT_DATABASE_USER: ${ERPNEXT_DB_USER}
+      ERP_NEXT_DATABASE_PASSWORD: ${ERPNEXT_DB_PASSWORD}
+      ERP_NEXT_USERNAME: ${ERPNEXT_ADMIN_USERNAME}
+      ERP_NEXT_PASSWORD: ${ERPNEXT_ADMIN_PASSWORD}
+      ERP_NEXT_EMAIL: ${ERPNEXT_ADMIN_EMAIL}
+      REDIS_HOST: erpnext-redis
+      REDIS_PORT_NUMBER: "6379"
+      REDIS_PASSWORD: ${ERPNEXT_REDIS_PASSWORD}
+      SMTP_HOST: ${ERPNEXT_SMTP_HOST}
+      FRAPPE_SITE_NAME: ${ERPNEXT_SITE_NAME}
+      PYTHONPATH: /opt/intdata/keycloak
+    volumes:
+      - erpnext-sites:/home/frappe/frappe-bench/sites
+      - erpnext-logs:/home/frappe/frappe-bench/logs
+      - ./keycloak:/opt/intdata/keycloak:ro
+    depends_on:
+      erpnext-mariadb:
+        condition: service_healthy
+      erpnext-redis:
+        condition: service_started
+
+  erpnext-worker:
+    image: frappe/erpnext:latest
+    container_name: erpnext-worker
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: bash -c "cd /home/frappe/frappe-bench && bench worker --queue default"
+    environment:
+      MARIADB_HOST: erpnext-mariadb
+      MARIADB_PORT_NUMBER: "3306"
+      MARIADB_ROOT_PASSWORD: ${ERPNEXT_DB_ROOT_PASSWORD}
+      ERP_NEXT_DATABASE_NAME: ${ERPNEXT_DB_NAME}
+      ERP_NEXT_DATABASE_USER: ${ERPNEXT_DB_USER}
+      ERP_NEXT_DATABASE_PASSWORD: ${ERPNEXT_DB_PASSWORD}
+      REDIS_HOST: erpnext-redis
+      REDIS_PORT_NUMBER: "6379"
+      REDIS_PASSWORD: ${ERPNEXT_REDIS_PASSWORD}
+      PYTHONPATH: /opt/intdata/keycloak
+    volumes:
+      - erpnext-sites:/home/frappe/frappe-bench/sites
+      - erpnext-logs:/home/frappe/frappe-bench/logs
+      - ./keycloak:/opt/intdata/keycloak:ro
+    depends_on:
+      erpnext-mariadb:
+        condition: service_healthy
+      erpnext-redis:
+        condition: service_started
+
+  erpnext-scheduler:
+    image: frappe/erpnext:latest
+    container_name: erpnext-scheduler
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: bash -c "cd /home/frappe/frappe-bench && bench schedule"
+    environment:
+      MARIADB_HOST: erpnext-mariadb
+      MARIADB_PORT_NUMBER: "3306"
+      MARIADB_ROOT_PASSWORD: ${ERPNEXT_DB_ROOT_PASSWORD}
+      ERP_NEXT_DATABASE_NAME: ${ERPNEXT_DB_NAME}
+      ERP_NEXT_DATABASE_USER: ${ERPNEXT_DB_USER}
+      ERP_NEXT_DATABASE_PASSWORD: ${ERPNEXT_DB_PASSWORD}
+      REDIS_HOST: erpnext-redis
+      REDIS_PORT_NUMBER: "6379"
+      REDIS_PASSWORD: ${ERPNEXT_REDIS_PASSWORD}
+      PYTHONPATH: /opt/intdata/keycloak
+    volumes:
+      - erpnext-sites:/home/frappe/frappe-bench/sites
+      - erpnext-logs:/home/frappe/frappe-bench/logs
+      - ./keycloak:/opt/intdata/keycloak:ro
+    depends_on:
+      erpnext-mariadb:
+        condition: service_healthy
+      erpnext-redis:
+        condition: service_started
+
+  erpnext-frontend:
+    image: frappe/erpnext:latest
+    container_name: erpnext-frontend
+    restart: unless-stopped
+    environment:
+      FRAPPE_SITE_NAME_HEADER: ${ERPNEXT_SITE_NAME}
+      FRAPPE_PORT: 8000
+      PROXY_PORT: 8080
+      BACKEND: erpnext:8000
+      SOCKETIO: erpnext-socketio:9000
+      UPSTREAM_REAL_IP_ADDRESS: 0.0.0.0/0
+      UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
+      UPSTREAM_REAL_IP_RECURSIVE: "on"
+    command: nginx-entrypoint.sh
+    ports:
+      - "7080:8080"
+    depends_on:
+      erpnext:
+        condition: service_started
+      erpnext-socketio:
+        condition: service_started
+    volumes:
+      - erpnext-sites:/home/frappe/frappe-bench/sites
+      - erpnext-logs:/home/frappe/frappe-bench/logs
+
+  erpnext-socketio:
+    image: frappe/erpnext:latest
+    container_name: erpnext-socketio
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: bash -c "cd /home/frappe/frappe-bench && node apps/frappe/socketio.js"
+    environment:
+      REDIS_HOST: erpnext-redis
+      REDIS_PORT_NUMBER: "6379"
+      REDIS_PASSWORD: ${ERPNEXT_REDIS_PASSWORD}
+    volumes:
+      - erpnext-sites:/home/frappe/frappe-bench/sites
+      - erpnext-logs:/home/frappe/frappe-bench/logs
+    depends_on:
+      erpnext-mariadb:
+        condition: service_healthy
+      erpnext-redis:
+        condition: service_started
+
+  odoo:
+    image: odoo:17.0
+    container_name: odoo-dev
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      HOST: ${ODOO_DB_HOST}
+      PORT: "${ODOO_DB_PORT}"
+      USER: ${ODOO_DB_USER}
+      PASSWORD: ${ODOO_DB_PASSWORD}
+      DATABASE: ${ODOO_DB_NAME}
+      ADMIN_PASSWORD: ${ODOO_ADMIN_PASSWORD}
+      ODOO_SERVER_WIDE_MODULES: web,auth_oauth
+      PYTHONPATH: /opt/intdata/keycloak
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - odoo-addons:/mnt/extra-addons
+      - ./keycloak:/opt/intdata/keycloak:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  erpnext-sites:
+  erpnext-logs:
+  erpnext-mariadb:
+  erpnext-redis:
+  odoo-data:
+  odoo-addons:

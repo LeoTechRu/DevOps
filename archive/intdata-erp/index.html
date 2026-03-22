@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERP Archive — Leonid.pro</title>
+    <meta
+      name="description"
+      content="Архивный ERP-кейс: historical code snapshot бывшего Intelligent Data ERP contour, decommissioned 22 марта 2026 года."
+    />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+  </head>
+  <body class="page-home">
+    <main id="main-content">
+      <section class="section section--hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Archive / Historical case</p>
+          <h1>Intelligent Data ERP</h1>
+          <p class="hero__lead">
+            Архивный code snapshot ERP-контура вокруг Odoo/ERPNext, SSO и deploy-обвязки. Контур decommissioned 22 марта 2026 года и больше не поддерживается как pet-проект.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="../../">На главную</a>
+            <a class="btn btn--secondary" href="../../resume/">К резюме</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cases">
+        <div class="section-heading">
+          <p class="eyebrow">Что внутри</p>
+          <h2>Что сохранено в архиве</h2>
+        </div>
+        <div class="case-stack">
+          <article class="case-card">
+            <div class="case-card__meta">Snapshot</div>
+            <h3>Полный code snapshot лежит в `snapshot/`.</h3>
+            <p>Перенесён из `/int/erp` без `.git`, `openspec`, `GEMINI.md` и `.env.example`, чтобы сохранить инженерный контекст без live-runtime ownership.</p>
+          </article>
+          <article class="case-card">
+            <div class="case-card__meta">Стек</div>
+            <h3>Odoo, ERPNext, SSO, reverse proxy, deploy scripts.</h3>
+            <p>В архиве остались compose-слой, generated конфиги Apache/Nginx, Python SSO helpers и repo-local документация.</p>
+          </article>
+          <article class="case-card">
+            <div class="case-card__meta">Статус</div>
+            <h3>Runtime удалён с машины.</h3>
+            <p>Хостовые unit'ы, vhost'ы, docker-хвосты и связанный runtime больше не считаются живым контуром. Новая разработка возможна только под отдельный заказ.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             targetNamespace="http://intdata.pro/nexus/itsm"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <process id="itsmTicket" name="ITSM Ticket Lifecycle" isExecutable="true">
+    <startEvent id="start" name="Ticket submitted" />
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="triage" />
+    <userTask id="triage" name="Initial triage" />
+    <sequenceFlow id="flow2" sourceRef="triage" targetRef="resolve" />
+    <userTask id="resolve" name="Resolution" />
+    <sequenceFlow id="flow3" sourceRef="resolve" targetRef="end" />
+    <endEvent id="end" name="Closed" />
+  </process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_itsm">
+    <bpmndi:BPMNPlane id="BPMNPlane_itsm" bpmnElement="itsmTicket">
+      <bpmndi:BPMNShape id="Shape_start" bpmnElement="start">
+        <omgdc:Bounds x="100" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_triage" bpmnElement="triage">
+        <omgdc:Bounds x="200" y="90" width="100" height="56" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_resolve" bpmnElement="resolve">
+        <omgdc:Bounds x="360" y="90" width="100" height="56" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_end" bpmnElement="end">
+        <omgdc:Bounds x="520" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge_flow1" bpmnElement="flow1">
+        <omgdi:waypoint x="136" y="118" />
+        <omgdi:waypoint x="200" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_flow2" bpmnElement="flow2">
+        <omgdi:waypoint x="300" y="118" />
+        <omgdi:waypoint x="360" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_flow3" bpmnElement="flow3">
+        <omgdi:waypoint x="460" y="118" />
+        <omgdi:waypoint x="520" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
