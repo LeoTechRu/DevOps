@@ -51,6 +51,12 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - перенос секретов и runtime-state в tracked repo;
 - coupling ERP contour и machine-wide tooling как одного owner-контура.
 
+## Lock discipline
+
+- Любые файловые правки в этом snapshot-контуре запрещены без предварительного `lockctl acquire` по конкретному файлу.
+- Источник истины по активным локам — только `lockctl`; project-local заметки не подменяют runtime truth.
+- После завершения правки лок обязательно снимается через `lockctl release-path` или `lockctl release-issue`.
+
 ## Git и завершение работы
 
 - Перед каждым локальным commit обязательно добавить в индекс новые файлы текущего scope и повторно выполнить `git add` для уже staged путей после каждой дополнительной правки; commit по устаревшему состоянию индекса запрещён.

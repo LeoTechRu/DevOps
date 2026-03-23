@@ -52,6 +52,12 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - смешение personal/public content и internal process tooling;
 - решения, которые делают repo зависимым owner-контуром family backend.
 
+## Lock discipline
+
+- Любые файловые правки в `/int/leonid` запрещены без предварительного `lockctl acquire` по конкретному файлу.
+- Источник истины по активным локам — только `lockctl`; project-local заметки не подменяют runtime truth.
+- После завершения правки лок обязательно снимается через `lockctl release-path` или `lockctl release-issue`.
+
 ## Git и завершение работы
 
 - Перед новой работой в этом git-репозитории агент обязан проверить чистоту дерева и upstream текущей ветки; обязательный `git pull` выполняется только при clean tree и валидном upstream.
