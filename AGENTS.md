@@ -45,6 +45,7 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - сайт может ссылаться на публичные материалы и проекты владельца, но не владеет их runtime;
 - любые product/runtime интеграции остаются внешними ссылками, а не ownership-переносом;
 - repo остаётся вне архитектуры canonical `intdata core`.
+- прямые кодовые импорты из других top-level root-контуров `/int/*` запрещены; любые связи с другими repos оформляются только через public links, public APIs/contracts, documented scripts/hooks/CLI entrypoints или иные явно согласованные boundary contracts.
 
 ## Escalation triggers
 
